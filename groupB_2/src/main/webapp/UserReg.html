@@ -1,0 +1,263 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <style>
+            .error{
+                color:brown;
+            }
+        ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a, .dropbtn {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover, .dropdown:hover .dropbtn {
+  background-color: green;
+}
+
+li.dropdown {
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1;}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+            .error{
+                color:brown;
+            }
+             
+             .registerclass{
+                background-image:url("bc5.jpg");
+             background-repeat:no-repeat;
+            background-size:cover;
+            border-radius:10px;
+
+            } 
+
+        
+                   </style>
+        <script>
+           
+            function valid()
+            {
+            	var empid=document.getElementById('empid').value;
+                var ename=document.getElementById('ename').value;
+                var pwd=document.getElementById('pwd').value;
+               
+                var phone=document.getElementById('phone').value;
+               
+                var mail=document.getElementById('email').value;
+            
+               
+                var id1=document.getElementById('id1');
+                var id2=document.getElementById('id2');
+                var id3=document.getElementById('id3');
+                var id4=document.getElementById('id4');
+                var id5=document.getElementById('id5');
+            
+                
+                
+
+                var regex= /^[a-zA-Z ]{5,}$/;
+                var pwdregex= /^[a-zA-Z0-9$@*#)]{8,}$/;
+                var phonex=/^[+]{1}[9]{1}[1]{1}[-]{1}[0-9]{10}$/;
+                var panregex=/^[A-Z]{5}[0-9]{4}[A-Z]{1}$/;
+                var emailregex=/^[A-Za-z0-9_]{3,}@{1}[a-z]{3,}[.]{1}[com]{3}$/;
+                var flag=true;
+                id1.innerHTML='';
+                id2.innerHTML='';
+                id3.innerHTML='';
+                id4.innerHTML='';
+                id5.innerHTML='';
+
+
+                if(empid=='')
+                {
+                    id1.innerHTML='plz fill ur id';
+                    flag=false;
+                }
+               
+
+                    
+                
+                if(ename=='')
+                {
+                    id2.innerHTML='plz fill ur name';
+                    flag=false;
+                }
+                else
+             {
+                  if(regex.test(ename)==false)
+                {
+                    id2.innerHTML='name must be in alphabets only';
+                    flag=false;
+                }
+             }
+
+
+
+
+
+                if(pwd=='')
+                {
+                    id3.innerHTML='plz fill ur pwd';
+                    flag=false;
+                }
+                else{
+                    if(pwdregex.test(pwd)==false)
+                {
+                    id3.innerHTML='please enter proper pwd';
+                    flag=false;
+                }  
+                } 
+
+
+
+
+               
+
+
+               /* if(phone=='')
+                {
+                    id4.innerHTML='please enter the phone number';
+                    flag=false;
+                }
+                else{
+                    if(phonex.test(phone)==false)
+                {
+                    id4.innerHTML='please enter only numbers and numbers should be in 10 digits';
+                    flag=false;
+                } 
+                }*/
+
+
+
+                if(mail=='')
+                {
+                    id5.innerHTML='plz fill ur mail id';
+                    flag=false;
+                }
+                else{
+                    if(emailregex.test(mail)==false)
+                {
+                    id5.innerHTML='please enter proper mail id';
+                    flag=false;
+                }  
+                } 
+
+
+             return flag;
+          }
+          
+            
+        </script>
+    </head>
+    <body>
+        <ul>
+            <li><a href="frontpage.html">Home</a></li>
+            <li><a href="#news">Gallery</a></li>
+
+            <li><a href="#news">Contact</a></li>
+            <li class="dropdown">
+                <a href="javascript:void(0)" class="dropbtn">register</a>
+                <div class="dropdown-content">
+                    <a href="regi.html">login</a>
+                    <a href="#">New User?Register</a>
+
+                </div>
+            </li>
+        </ul>
+        <center>
+
+            <h1 style="font-family:'Bernard MT'">"Collections"</h1>
+        </center>
+        <center>
+            <div class="registerclass">
+
+                <h2>REGISTER HERE</h2>
+                <form action="UserReg" onsubmit="return valid()" method="post">
+
+                    Enter empid:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type='text' id='empid' name='empid'>
+                    <div id="id1" class="error"></div>
+                    <!-- <input type='submit' value='ok'> -->
+
+                    Enter ename:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type='text' id='ename' name='ename'>
+                    <div id="id2" class="error"></div>
+                    <br>
+                    Enter password:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type='password' id='pwd' name='pwd'>
+                    <div id="id3" class="error"></div>
+                    <!-- <input type='submit' value='ok'> -->
+                    <br>
+                    
+                     Enter Contact No:&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="tel" id='phone' name='phone1'>
+                    <div id="id4" class="error"></div>
+                    <!-- <input type='submit' value='ok'> -->
+                    <br>
+                    
+                    Enter email-id:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="text" id='email' name='email'>
+                    <div id="id5" class="error"></div>
+                    <br>
+
+                    Gender:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type='radio' name="gender" id="gender1" value="male">Male
+                    <input type='radio' name="gender" id="gender2" value="female">Female
+                    <div id="id6" class="error"></div>
+                    <!-- <input type='submit' value='ok'> -->
+                    <br>
+
+
+
+
+                   
+                  
+                   
+                    <input type='submit' value='register'>
+                    <a href='Login.html'>login</a>
+
+
+                </form>
+            </div>
+        </center>
+
+
+    </body>
+</html>
