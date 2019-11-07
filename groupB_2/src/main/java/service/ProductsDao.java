@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 import model.Product;
 
@@ -13,11 +14,19 @@ public class ProductsDao {
 	public boolean registerProduct(Product product){
 		boolean result=false;
 		try{
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-			Connection  con= DriverManager.getConnection(                                     
-					"jdbc:oracle:thin:@localhost:1521:xe",
-					"hr",
-					"hr");
+Properties props = new Properties();
+			
+			props.load(this.getClass().getResourceAsStream("/database.properties"));
+			
+			String driver = props.getProperty("jdbc.driver");
+			if(driver!=null){
+				Class.forName(driver);
+			}
+			
+			Connection con = null;
+			
+			String url = props.getProperty("jdbc.url");
+			String username = props.getProperty("jdbc.user");
 			PreparedStatement smt =  con.prepareStatement("insert into product values(?,?,?,?,?)");
 			smt.setString(1, product.getPid());
 			smt.setString(2, product.getPname());

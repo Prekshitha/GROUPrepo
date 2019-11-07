@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Properties;
 
 import model.Users;
 
@@ -11,11 +12,19 @@ public class UsersDao {
 	public boolean checkLogin(Users users){
 		boolean result=false;
 		try{
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-			Connection  con= DriverManager.getConnection(
-					"jdbc:oracle:thin:@localhost:1521:xe",
-					"hr",
-					"hr");
+Properties props = new Properties();
+			
+			props.load(this.getClass().getResourceAsStream("/database.properties"));
+			
+			String driver = props.getProperty("jdbc.driver");
+			if(driver!=null){
+				Class.forName(driver);
+			}
+			
+			Connection con = null;
+			
+			String url = props.getProperty("jdbc.url");
+			String username = props.getProperty("jdbc.user");
 			PreparedStatement smt =  con.prepareStatement("select * from empusers where empid=? and password=?");
 			smt.setString(1, users.getUserid());
 			smt.setString(2, users.getPassword());
@@ -36,11 +45,19 @@ public class UsersDao {
 	public boolean registerUser(Users users){
 		boolean result=false;
 		try{
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-			Connection  con= DriverManager.getConnection(
-					"jdbc:oracle:thin:@localhost:1521:xe",
-					"hr",
-					"hr");
+Properties props = new Properties();
+			
+			props.load(this.getClass().getResourceAsStream("/database.properties"));
+			
+			String driver = props.getProperty("jdbc.driver");
+			if(driver!=null){
+				Class.forName(driver);
+			}
+			
+			Connection con = null;
+			
+			String url = props.getProperty("jdbc.url");
+			String username = props.getProperty("jdbc.user");
 			PreparedStatement smt =  con.prepareStatement("insert into empusers values(?,?,?,?,?,?)");
 			smt.setString(1, users.getUserid());
 			smt.setString(2, users.getName());
@@ -67,11 +84,19 @@ public class UsersDao {
 	
 		Users users=null;
 		try{
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-			Connection  con= DriverManager.getConnection(
-					"jdbc:oracle:thin:@localhost:1521:xe",
-					"hr",
-					"hr");
+Properties props = new Properties();
+			
+			props.load(this.getClass().getResourceAsStream("/database.properties"));
+			
+			String driver = props.getProperty("jdbc.driver");
+			if(driver!=null){
+				Class.forName(driver);
+			}
+			
+			Connection con = null;
+			
+			String url = props.getProperty("jdbc.url");
+			String username = props.getProperty("jdbc.user");
 			PreparedStatement smt =  con.prepareStatement("select * from empusers where empid=?");
 			smt.setString(1, userid);
 			ResultSet rs=smt.executeQuery();

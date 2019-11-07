@@ -5,6 +5,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import model.Users;
+import service.UsersDao;
 
 /**
  * Servlet implementation class Login
@@ -23,17 +27,35 @@ public class Login extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		String empid=request.getParameter("empid");
+		String pwd=request.getParameter("pwd");
+	
+		Users users=new Users();
+		users.setUserid(empid);
+		users.setPassword(pwd);
+		
+		boolean flag=new UsersDao().checkLogin(users);
+		if(flag){
+			HttpSession session=request.getSession();
+			session.setAttribute("empid", empid);
+			System.out.println(empid);
+			response.sendRedirect("UserHome.jsp");
+			
+		}
+		else{
+			response.sendRedirect("Login.html");
+		}
+		
+		
 	}
 
-}
+	}
+
+
